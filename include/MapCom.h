@@ -65,7 +65,7 @@ public:
 		updateVCom(map),
 		pathWatcher(map)
 	{
-		map.mapRenderer.buffer.Init(60, 20);
+		map.mapRenderer.buffer.Init(100, 20);
 	}
 
 	virtual void OnPrint()
@@ -177,7 +177,6 @@ private:
 	UpdateVertexCom updateVCom;
 	MapPathWatcher pathWatcher;
 
-
 	void ProcessBack()
 	{
 		if (map.isBack)
@@ -223,6 +222,6 @@ private:
 		if (map.nodeManager.Save(path))
 			cp.DisplayOK("保存地图成功，地图已保存在：" + path);
 		else
-			cp.DisplayError("存储地图失败，请检查是否存在同名文件：" + path);
+			cp.DisplayError("存储地图失败：" + path);
 	}
 };
