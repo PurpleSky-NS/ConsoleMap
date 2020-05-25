@@ -26,6 +26,7 @@ class MapCom :public UIComponent
 				.DisplayTab().DisplayLine("全部命令都可以在另一个命令的基础上使用，比如你可以在制作路径的时候使用命令跳转到另一个顶点上")
 				.DisplayLine("全局命令按键：")
 				.DisplayTab().DisplayLine("i 重新设定屏幕的长宽")
+				.DisplayTab().DisplayLine("q 退出")
 				.DisplayLine("浏览模式相关命令按键:")
 				.DisplayTab().DisplayLine("c 切换为普通移动模式(默认)，wasd可以控制光标的移动")
 				.DisplayTab().DisplayLine("p 设置普通模式移动的步数(默认为1)，嫌跑得慢可以设置这个哦~")
@@ -91,6 +92,9 @@ public:
 			cp.DisplayOK("设置成功，继续使用吧~");
 			break;
 		}
+		case 'q':
+			SurfaceManager::GetInstance().CloseTop();
+			return;
 		case '?':
 			SwitchToUI(&tipsCom);
 			break;
@@ -148,6 +152,16 @@ public:
 		pathWatcher.Work(vids);
 	}
 
+	bool Save(const std::string& path)
+	{
+		return map.nodeManager.Save(path);
+	}
+
+	bool Load(const std::string& path)
+	{
+		return map.nodeManager.Load(path);
+	}
+
 private:
 	MapComInfo map;
 
@@ -201,7 +215,7 @@ private:
 
 	void SaveMap()
 	{
-		auto path = GetLine(" # 请输入要保存的地图文件名/路径(什么也不输入表示不保存)：");
+		std::string path = GetLine(" # 请输入要保存的地图文件名/路径(什么也不输入表示不保存)：");
 		if (path.empty())
 			return;
 		if (path.size() < 6 || path.substr(path.size() - 6, 6) != ".clmap") //判断用户写文件名带不带后缀

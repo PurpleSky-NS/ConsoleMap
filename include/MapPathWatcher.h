@@ -50,10 +50,10 @@ public:
 			map.mapRenderer.RenderVertexNode(*from);
 		if (from == onCur)
 			isInPath = true;
+		cp.DisplayLine(map.mapRenderer.buffer.Data());
 		PrintCurMsg();
 		if (onCur) //光标在顶点上
 			PrintVertexMsg(*onCur);//输出顶点信息
-		cp.DisplayLine().DisplayLine(" # 按下q可以退出路径浏览模式");
 	}
 
 	virtual void OnEvent(char inputText)
