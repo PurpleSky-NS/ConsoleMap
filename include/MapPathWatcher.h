@@ -45,7 +45,7 @@ public:
 		}
 		from = map.nodeManager.GetVertex(path[0]);
 		if (from == nullptr)
-			cp.DisplayError(cp.SwitchConcat().Display("不存在编号为 ").Display(path[i]).Display(" 的顶点").FlushOut()).SwitchDefault();
+			cp.DisplayError(cp.SwitchConcat().Display("不存在编号为 ").Display(path[0]).Display(" 的顶点").FlushOut()).SwitchDefault();
 		else
 			map.mapRenderer.RenderVertexNode(*from);
 		if (from == onCur)
